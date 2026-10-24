@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: safe-ai-mailroom
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_MODEL
+        value: meta-llama/llama-3.3-70b-instruct
+      - key: DATABASE_PATH
+        value: /data/mailroom.db
+    disk:
+      name: mailroom-data
+      mountPath: /data
+      sizeGB: 1
